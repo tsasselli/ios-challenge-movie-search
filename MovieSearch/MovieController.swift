@@ -10,6 +10,12 @@ import Foundation
 
 class MovieController {
     
+    init(){
+        MovieController.searchForMovie("superman") { (movies) in
+            //
+        }
+    }
+    
     static let baseURL = NSURL(string: "http://api.themoviedb.org/3/search/movie")
     static private let apiKey = "39b3b8ccedabe0c9373ba3b32a814d13"
     
@@ -38,6 +44,7 @@ class MovieController {
             dispatch_async(dispatch_get_main_queue()) {
                 let movies = moviesArray.flatMap{ Movie(dictionary: $0) }
                 completion(movies: movies)
+                print(movies)
             }
         }
         
